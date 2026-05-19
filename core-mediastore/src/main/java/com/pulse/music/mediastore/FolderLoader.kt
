@@ -1,0 +1,30 @@
+package com.pulse.music.mediastore
+
+import com.pulse.music.database.entity.SongEntity
+import java.io.File
+import javax.inject.Inject
+import javax.inject.Singleton
+
+data class FolderInfo(
+    val path: String,
+    val name: String,
+    val songCount: Int
+)
+
+@Singleton
+class FolderLoader @Inject constructor(
+    private val songLoader: SongLoader
+) {
+    fun getAllFolders(): List<FolderInfo> {
+        val folderMap = mutableMapOf<String, MutableList<SongEntity>>()
+        songLoader.getAllSongs().forEach { song ->
+            val folder = File(song.data).parent ?: "/Unknown"
+            folderMap.getOrPut(folder) { mutableListOf() }.add(song)
+        }
+        return folderMap.map { (path, songs) ->
+            FolderInfo(path, File(path).name, songs.size)
+        }.sortedBy { it.name }
+    }
+
+    fun getSongsByFolder(path: String) = songLoader.getAllSongs().filter { File(it.data).parent == path }
+}
