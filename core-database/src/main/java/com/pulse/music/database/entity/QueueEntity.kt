@@ -1,24 +1,12 @@
-package com.pulse.music.database.dao
+package com.pulse.music.database.entity
 
-import androidx.room.*
-import com.pulse.music.database.entity.QueueEntity
-import com.pulse.music.database.entity.SongEntity
-import kotlinx.coroutines.flow.Flow
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Dao
-interface QueueDao {
-    @Query("SELECT s.* FROM songs s INNER JOIN queue q ON s.id = q.songId ORDER BY q.position ASC")
-    fun getQueueSongs(): Flow<List<SongEntity>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addToQueue(queue: QueueEntity)
-
-    @Query("DELETE FROM queue WHERE id = :id")
-    suspend fun removeFromQueue(id: Long)
-
-    @Query("DELETE FROM queue")
-    suspend fun clearQueue()
-
-    @Query("UPDATE queue SET position = :position WHERE id = :id")
-    suspend fun updatePosition(id: Long, position: Int)
-}
+@Entity(tableName = "queue")
+data class QueueEntity(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val songId: Long,
+    val position: Int
+)
