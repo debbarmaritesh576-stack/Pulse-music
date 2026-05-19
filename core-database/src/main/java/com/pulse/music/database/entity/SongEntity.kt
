@@ -1,0 +1,26 @@
+package com.pulse.music.database.entity
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "songs")
+data class SongEntity(
+    @PrimaryKey
+    val id: Long,
+    val title: String,
+    val artistName: String,
+    val albumName: String,
+    val albumId: Long,
+    val artistId: Long,
+    val duration: Long,
+    val trackNumber: Int,
+    val year: Int,
+    val data: String,
+    val size: Long,
+    val dateModified: Long,
+    val mimeType: String,
+    val isFavorite: Boolean = false,
+    val playCount: Int = 0,
+    val lastPlayed: Long = 0,
+    val dateAdded: Long = System.currentTimeMillis()
+)
