@@ -1,0 +1,31 @@
+package com.pulse.music.util
+
+import java.util.concurrent.TimeUnit
+
+object TimeUtil {
+
+    fun formatMillis(millis: Long): String {
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % 60
+        return String.format("%d:%02d", minutes, seconds)
+    }
+
+    fun formatSeconds(seconds: Int): String {
+        val min = seconds / 60
+        val sec = seconds % 60
+        return String.format("%d:%02d", min, sec)
+    }
+
+    fun getCurrentTimestamp(): Long = System.currentTimeMillis()
+
+    fun getRelativeTime(timestamp: Long): String {
+        val diff = System.currentTimeMillis() - timestamp
+        return when {
+            diff < 60_000 -> "Just now"
+            diff < 3_600_000 -> "${diff / 60_000} min ago"
+            diff < 86_400_000 -> "${diff / 3_600_000} hours ago"
+            diff < 604_800_000 -> "${diff / 86_400_000} days ago"
+            else -> timestamp.formatDate()
+        }
+    }
+}
