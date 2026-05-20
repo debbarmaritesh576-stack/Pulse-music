@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.pulse.music.home.HomeScreen"
+        android:label="Home"/>
+
+    <fragment
+        android:id="@+id/player"
+        android:name="com.pulse.music.player.ui.NowPlayingScreen"
+        android:label="Now Playing"/>
+
+    <fragment
+        android:id="@+id/queue"
+        android:name="com.pulse.music.player.ui.QueueScreen"
+        android:label="Queue"/>
+
+    <fragment
+        android:id="@+id/albums"
+        android:name="com.pulse.music.library.AlbumsScreen"
+        android:label="Albums"/>
+
+    <fragment
+        android:id="@+id/artists"
+        android:name="com.pulse.music.library.ArtistsScreen"
+        android:label="Artists"/>
+
+    <fragment
+        android:id="@+id/playlists"
+        android:name="com.pulse.music.library.PlaylistsScreen"
+        android:label="Playlists"/>
+
+    <fragment
+        android:id="@+id/folders"
+        android:name="com.pulse.music.library.FoldersScreen"
+        android:label="Folders"/>
+
+    <fragment
+        android:id="@+id/genres"
+        android:name="com.pulse.music.library.GenresScreen"
+        android:label="Genres"/>
+
+    <fragment
+        android:id="@+id/search"
+        android:name="com.pulse.music.search.SearchScreen"
+        android:label="Search"/>
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.pulse.music.settings.SettingsScreen"
+        android:label="Settings"/>
+
+    <fragment
+        android:id="@+id/appearance"
+        android:name="com.pulse.music.settings.AppearanceScreen"
+        android:label="Appearance"/>
+
+    <fragment
+        android:id="@+id/audio"
+        android:name="com.pulse.music.settings.AudioScreen"
+        android:label="Audio"/>
+
+    <fragment
+        android:id="@+id/backup"
+        android:name="com.pulse.music.settings.BackupScreen"
+        android:label="Backup"/>
+
+    <fragment
+        android:id="@+id/lyrics"
+        android:name="com.pulse.music.lyrics.LyricsScreen"
+        android:label="Lyrics"/>
+
+</navigation>
