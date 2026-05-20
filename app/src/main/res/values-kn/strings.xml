@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ಪಲ್ಸ್ ಮ್ಯೂಸಿಕ್</string>
+    <string name="home">ಮುಖಪುಟ</string>
+    <string name="songs">ಹಾಡುಗಳು</string>
+    <string name="albums">ಆಲ್ಬಮ್‌ಗಳು</string>
+    <string name="artists">ಕಲಾವಿದರು</string>
+    <string name="playlists">ಪ್ಲೇಲಿಸ್ಟ್‌ಗಳು</string>
+    <string name="search">ಹುಡುಕಿ</string>
+    <string name="settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="now_playing">ಈಗ ಪ್ಲೇ ಆಗುತ್ತಿದೆ</string>
+    <string name="favorites">ಮೆಚ್ಚಿನವು</string>
+    <string name="play">ಪ್ಲೇ</string>
+    <string name="pause">ವಿರಾಮ</string>
+    <string name="next">ಮುಂದಿನ</string>
+    <string name="previous">ಹಿಂದಿನ</string>
+    <string name="shuffle">ಶಫಲ್</string>
+    <string name="repeat">ಪುನರಾವರ್ತಿಸಿ</string>
+    <string name="share">ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="delete">ಅಳಿಸಿ</string>
+    <string name="no_songs">ಯಾವುದೇ ಹಾಡುಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
+</resources>
