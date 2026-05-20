@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">பல்ஸ் மியூசிக்</string>
+    <string name="home">முகப்பு</string>
+    <string name="songs">பாடல்கள்</string>
+    <string name="albums">ஆல்பங்கள்</string>
+    <string name="artists">கலைஞர்கள்</string>
+    <string name="playlists">பிளேலிஸ்ட்கள்</string>
+    <string name="search">தேடு</string>
+    <string name="settings">அமைப்புகள்</string>
+    <string name="now_playing">இப்போது இயங்குகிறது</string>
+    <string name="favorites">பிடித்தவை</string>
+    <string name="play">இயக்கு</string>
+    <string name="pause">இடைநிறுத்து</string>
+    <string name="next">அடுத்து</string>
+    <string name="previous">முந்தைய</string>
+    <string name="shuffle">கலைத்தல்</string>
+    <string name="repeat">மீண்டும்</string>
+    <string name="share">பகிர்</string>
+    <string name="delete">நீக்கு</string>
+    <string name="no_songs">பாடல்கள் எதுவும் இல்லை</string>
+</resources>
