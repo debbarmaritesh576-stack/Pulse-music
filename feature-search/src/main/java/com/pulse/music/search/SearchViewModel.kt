@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pulse.music.database.dao.SongDao
 import com.pulse.music.database.entity.SongEntity
+import com.pulse.music.player.AudioEngine
 import com.pulse.music.player.MusicPlayer
 import com.pulse.music.player.QueueManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +22,8 @@ data class SearchState(
 class SearchViewModel @Inject constructor(
     private val songDao: SongDao,
     private val musicPlayer: MusicPlayer,
-    private val queueManager: QueueManager
+    private val queueManager: QueueManager,
+    private val audioEngine: AudioEngine
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SearchState())
@@ -29,6 +31,7 @@ class SearchViewModel @Inject constructor(
 
     fun onQueryChanged(query: String) {
         _state.value = _state.value.copy(query = query)
+        if (!audioEngine.shouldProcessSearch()) return
         if (query.isNotBlank()) {
             viewModelScope.launch {
                 songDao.getAllSongs().collect { songs ->
