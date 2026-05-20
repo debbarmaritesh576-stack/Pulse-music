@@ -1,23 +1,8 @@
-# 🎵 Pulse Music
+🚧 Pulse Music is currently under active development! 🎵
 
-Beautiful offline music player for Android. No ads. No internet. Just music.
+We’re building a modern offline music player with a beautiful UI, smooth performance, lyrics support, equalizer, widgets, playlists, and much more.
 
-## ✨ Features
-- 🎵 All formats (MP3, FLAC, WAV, AAC, OGG, OPUS)
-- 🎨 Material 3 Design
-- 🎚️ 10-Band Equalizer
-- 📝 Lyrics Support
-- 🔒 100% Offline & Private
+The app will be launching on Google Play Store soon. 🚀
 
-## 🏗️ Tech Stack
-- Kotlin + Jetpack Compose
-- Media3 ExoPlayer
-- Room Database
-- Hilt DI
-- Clean Architecture
-
-## 📦 Download
-Coming soon on Play Store...
-
-## 📄 License
-GNU General Public License v3.0
+Stay tuned for early previews, beta testing, and new feature updates.
+#PulseMusic #AndroidApp #MusicPlayer #ComingSoon
