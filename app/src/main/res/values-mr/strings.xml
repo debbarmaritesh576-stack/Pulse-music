@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">पल्स म्युझिक</string>
+    <string name="home">होम</string>
+    <string name="songs">गाणी</string>
+    <string name="albums">अल्बम</string>
+    <string name="artists">कलाकार</string>
+    <string name="playlists">प्लेलिस्ट</string>
+    <string name="search">शोधा</string>
+    <string name="settings">सेटिंग्ज</string>
+    <string name="now_playing">आता चालू आहे</string>
+    <string name="favorites">आवडते</string>
+    <string name="play">चालू करा</string>
+    <string name="pause">थांबवा</string>
+    <string name="next">पुढचे</string>
+    <string name="previous">मागचे</string>
+    <string name="shuffle">शफल</string>
+    <string name="repeat">पुनरावृत्ती</string>
+    <string name="share">शेअर करा</string>
+    <string name="delete">हटवा</string>
+    <string name="no_songs">गाणी सापडली नाहीत</string>
+</resources>
