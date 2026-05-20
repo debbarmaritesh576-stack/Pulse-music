@@ -1,25 +1,16 @@
-GNU GENERAL PUBLIC LICENSE v3.0
+                   GNU GENERAL PUBLIC LICENSE
+                      Version 3, 29 June 2007
 
-Copyright © 2007 Free Software Foundation, Inc.
+Copyright (C) 2026 Pulse Music
 
-This software is free and open-source.  
-You are allowed to:
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License.
 
-• Use the software  
-• Modify the source code  
-• Share and distribute copies  
-• Create your own versions  
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-Conditions:
-
-• You must keep the original license and copyright notice  
-• Modified versions must also remain open-source under GPL v3  
-• Source code must be provided when distributing the software  
-
-Disclaimer:
-
-This software is provided “AS IS”, without any warranty or guarantee.  
-The authors are not responsible for any damage or issues caused by using this software.
-
-Full License:
-https://www.gnu.org/licenses/gpl-3.0.html
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
