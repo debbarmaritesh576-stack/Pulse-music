@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">পালস মিউজিক</string>
+    <string name="home">হোম</string>
+    <string name="songs">গান</string>
+    <string name="albums">অ্যালবাম</string>
+    <string name="artists">শিল্পী</string>
+    <string name="playlists">প্লেলিস্ট</string>
+    <string name="search">খুঁজুন</string>
+    <string name="settings">সেটিংস</string>
+    <string name="now_playing">এখন চলছে</string>
+    <string name="favorites">প্রিয়</string>
+    <string name="play">চালান</string>
+    <string name="pause">থামান</string>
+    <string name="next">পরবর্তী</string>
+    <string name="previous">পূর্ববর্তী</string>
+    <string name="shuffle">শাফল</string>
+    <string name="repeat">পুনরাবৃত্তি</string>
+    <string name="share">শেয়ার</string>
+    <string name="delete">মুছুন</string>
+    <string name="no_songs">কোনো গান পাওয়া যায়নি</string>
+</resources>
