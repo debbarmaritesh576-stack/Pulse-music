@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_options">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System Default</item>
+    </string-array>
+
+    <string-array name="sort_options">
+        <item>A-Z</item>
+        <item>Z-A</item>
+        <item>Recently Added</item>
+        <item>Duration</item>
+    </string-array>
+
+    <string-array name="sleep_timer_options">
+        <item>Off</item>
+        <item>5 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>60 minutes</item>
+    </string-array>
+
+    <string-array name="grid_size_options">
+        <item>2 Columns</item>
+        <item>3 Columns</item>
+        <item>4 Columns</item>
+    </string-array>
+</resources>
