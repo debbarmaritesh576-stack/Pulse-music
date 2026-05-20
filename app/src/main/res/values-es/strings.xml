@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pulse Music</string>
+    <string name="home">Inicio</string>
+    <string name="songs">Canciones</string>
+    <string name="albums">Álbumes</string>
+    <string name="artists">Artistas</string>
+    <string name="playlists">Listas</string>
+    <string name="search">Buscar</string>
+    <string name="settings">Ajustes</string>
+    <string name="now_playing">Reproduciendo</string>
+    <string name="favorites">Favoritos</string>
+    <string name="play">Reproducir</string>
+    <string name="pause">Pausa</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="shuffle">Aleatorio</string>
+    <string name="repeat">Repetir</string>
+    <string name="share">Compartir</string>
+    <string name="delete">Eliminar</string>
+    <string name="no_songs">No se encontraron canciones</string>
+</resources>
