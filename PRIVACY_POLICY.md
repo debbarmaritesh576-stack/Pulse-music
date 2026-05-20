@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated:** 2024
+**Last updated:** 2026
 
 Pulse Music is a **100% offline** music player. We do not collect, store, or transmit any personal data.
 
