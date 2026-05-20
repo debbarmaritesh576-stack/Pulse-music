@@ -1,0 +1,40 @@
+package com.pulse.music.core.mediastore
+
+import android.content.Context
+import android.media.MediaMetadataRetriever
+import android.net.Uri
+import com.google.common.truth.Truth.assertThat
+import com.pulse.music.mediastore.MetadataExtractor
+import io.mockk.*
+import org.junit.Before
+import org.junit.Test
+
+class MetadataExtractorTest {
+
+    private lateinit var context: Context
+    private lateinit var extractor: MetadataExtractor
+
+    @Before
+    fun setUp() {
+        context = mockk(relaxed = true)
+        extractor = MetadataExtractor(context)
+    }
+
+    @Test
+    fun `extractArtwork should return null for missing file`() {
+        val result = extractor.extractArtwork("/invalid/path.mp3")
+        assertThat(result).isNull()
+    }
+
+    @Test
+    fun `extractMetadata should return map for valid uri`() {
+        val uri: Uri = mockk(relaxed = true)
+        mockkConstructor(MediaMetadataRetriever::class)
+        every { anyConstructed<MediaMetadataRetriever>().setDataSource(any(), any<Uri>()) } just Runs
+        every { anyConstructed<MediaMetadataRetriever>().extractMetadata(any()) } returns "Test Value"
+        every { anyConstructed<MediaMetadataRetriever>().release() } just Runs
+        
+        val metadata = extractor.extractMetadata(uri)
+        assertThat(metadata).isNotEmpty()
+    }
+}
