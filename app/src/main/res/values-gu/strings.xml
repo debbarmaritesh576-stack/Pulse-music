@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">પલ્સ મ્યુઝિક</string>
+    <string name="home">હોમ</string>
+    <string name="songs">ગીતો</string>
+    <string name="albums">આલ્બમ</string>
+    <string name="artists">કલાકારો</string>
+    <string name="playlists">પ્લેલિસ્ટ</string>
+    <string name="search">શોધો</string>
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="now_playing">હમણાં ચાલી રહ્યું છે</string>
+    <string name="favorites">મનપસંદ</string>
+    <string name="play">ચલાવો</string>
+    <string name="pause">થોભાવો</string>
+    <string name="next">આગળ</string>
+    <string name="previous">પાછળ</string>
+    <string name="share">શેર કરો</string>
+    <string name="delete">કાઢી નાખો</string>
+    <string name="no_songs">કોઈ ગીતો મળ્યા નહીં</string>
+</resources>
