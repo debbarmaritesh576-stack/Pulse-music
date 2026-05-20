@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.PulseMusic.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="Widget.PulseMusic.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="Widget.PulseMusic.SeekBar" parent="Widget.Material3.SeekBar">
+        <item name="colorPrimary">@color/primary</item>
+    </style>
+</resources>
