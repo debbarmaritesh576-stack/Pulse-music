@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">పల్స్ మ్యూజిక్</string>
+    <string name="home">హోమ్</string>
+    <string name="songs">పాటలు</string>
+    <string name="albums">ఆల్బమ్‌లు</string>
+    <string name="artists">కళాకారులు</string>
+    <string name="playlists">ప్లేలిస్ట్‌లు</string>
+    <string name="search">వెతకండి</string>
+    <string name="settings">సెట్టింగ్‌లు</string>
+    <string name="now_playing">ఇప్పుడు ప్లే అవుతోంది</string>
+    <string name="favorites">ఇష్టమైనవి</string>
+    <string name="play">ప్లే</string>
+    <string name="pause">పాజ్</string>
+    <string name="next">తదుపరి</string>
+    <string name="previous">మునుపటి</string>
+    <string name="shuffle">షఫుల్</string>
+    <string name="repeat">రిపీట్</string>
+    <string name="share">షేర్</string>
+    <string name="delete">తొలగించు</string>
+    <string name="no_songs">పాటలు కనుగొనబడలేదు</string>
+</resources>
