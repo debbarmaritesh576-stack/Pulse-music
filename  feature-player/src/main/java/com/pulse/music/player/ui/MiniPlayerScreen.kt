@@ -13,9 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import androidx.compose.ui.platform.LocalContext
 
 @Composable
 fun MiniPlayerScreen(
@@ -28,6 +28,8 @@ fun MiniPlayerScreen(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+
     Surface(
         modifier = modifier
             .fillMaxWidth()
@@ -38,23 +40,36 @@ fun MiniPlayerScreen(
         tonalElevation = 4.dp
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 8.dp),
+            modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current).data(songData).build(),
+                model = if (songData.isNotEmpty()) {
+                    ImageRequest.Builder(context).data(songData).build()
+                } else null,
                 contentDescription = "Album Art",
                 modifier = Modifier.size(48.dp)
             )
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(songTitle, maxLines = 1, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.bodyMedium)
-                Text(songArtist, maxLines = 1, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.bodySmall)
+                Text(
+                    songTitle.ifEmpty { "Pulse Music" },
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    songArtist.ifEmpty { "Tap to open" },
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
             IconButton(onClick = onPlayPause) {
-                Icon(if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow, "Play/Pause")
+                Icon(
+                    if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                    "Play/Pause"
+                )
             }
             IconButton(onClick = onNext) {
                 Icon(Icons.Default.SkipNext, "Next")
