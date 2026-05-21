@@ -1,11 +1,13 @@
 package com.pulse.music
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavDeepLink
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pulse.music.home.HomeScreen
-import com.pulse.music.player.NowPlayingScreen
+import com.pulse.music.player.ui.NowPlayingScreen
+import com.pulse.music.player.ui.QueueScreen
 import com.pulse.music.library.AlbumsScreen
 import com.pulse.music.library.ArtistsScreen
 import com.pulse.music.library.PlaylistsScreen
@@ -13,12 +15,14 @@ import com.pulse.music.library.FoldersScreen
 import com.pulse.music.library.GenresScreen
 import com.pulse.music.search.SearchScreen
 import com.pulse.music.settings.SettingsScreen
+import com.pulse.music.settings.AppearanceScreen
+import com.pulse.music.settings.AudioScreen
+import com.pulse.music.settings.BackupScreen
 import com.pulse.music.lyrics.LyricsScreen
-import com.pulse.music.player.QueueScreen
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
-    object NowPlaying : Screen("now_playing")
+    object NowPlaying : Screen("now_playing?songId={songId}")
     object Queue : Screen("queue")
     object Albums : Screen("albums")
     object AlbumDetail : Screen("album_detail/{albumId}")
@@ -30,6 +34,9 @@ sealed class Screen(val route: String) {
     object Genres : Screen("genres")
     object Search : Screen("search")
     object Settings : Screen("settings")
+    object Appearance : Screen("appearance")
+    object Audio : Screen("audio")
+    object Backup : Screen("backup")
     object Lyrics : Screen("lyrics")
     object About : Screen("about")
 }
@@ -44,14 +51,21 @@ fun PulseNavGraph() {
     ) {
         composable(Screen.Home.route) {
             HomeScreen(
-                onNavigateToPlayer = { navController.navigate(Screen.NowPlaying.route) },
+                onNavigateToPlayer = {
+                    navController.navigate(Screen.NowPlaying.route.replace("{songId}", "0"))
+                },
                 onNavigateToLibrary = { route -> navController.navigate(route) },
                 onNavigateToSearch = { navController.navigate(Screen.Search.route) },
                 onNavigateToSettings = { navController.navigate(Screen.Settings.route) }
             )
         }
 
-        composable(Screen.NowPlaying.route) {
+        composable(
+            route = Screen.NowPlaying.route,
+            deepLinks = listOf(
+                NavDeepLink(uriPattern = "pulsemusic://player/{songId}")
+            )
+        ) {
             NowPlayingScreen(
                 onNavigateBack = { navController.popBackStack() },
                 onNavigateToQueue = { navController.navigate(Screen.Queue.route) },
@@ -80,6 +94,12 @@ fun PulseNavGraph() {
             )
         }
 
+        composable("album_detail/{albumId}") {
+            // AlbumDetailScreen(
+            //     onNavigateBack = { navController.popBackStack() }
+            // )
+        }
+
         composable(Screen.Artists.route) {
             ArtistsScreen(
                 onNavigateToArtist = { artistId ->
@@ -89,6 +109,12 @@ fun PulseNavGraph() {
             )
         }
 
+        composable("artist_detail/{artistId}") {
+            // ArtistDetailScreen(
+            //     onNavigateBack = { navController.popBackStack() }
+            // )
+        }
+
         composable(Screen.Playlists.route) {
             PlaylistsScreen(
                 onNavigateToPlaylist = { playlistId ->
@@ -96,6 +122,12 @@ fun PulseNavGraph() {
                 },
                 onNavigateBack = { navController.popBackStack() }
             )
+        }
+
+        composable("playlist_detail/{playlistId}") {
+            // PlaylistDetailScreen(
+            //     onNavigateBack = { navController.popBackStack() }
+            // )
         }
 
         composable(Screen.Folders.route) {
@@ -119,6 +151,27 @@ fun PulseNavGraph() {
 
         composable(Screen.Settings.route) {
             SettingsScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToTheme = { navController.navigate(Screen.Appearance.route) },
+                onNavigateToEqualizer = { navController.navigate(Screen.Audio.route) },
+                onNavigateToBackup = { navController.navigate(Screen.Backup.route) }
+            )
+        }
+
+        composable(Screen.Appearance.route) {
+            AppearanceScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.Audio.route) {
+            AudioScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.Backup.route) {
+            BackupScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
