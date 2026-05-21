@@ -6,7 +6,8 @@
     android:background="@drawable/widget_background"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:contentDescription="@string/widget_desc">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -19,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="Pulse Music"
+            android:text="@string/app_name"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -29,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="Tap to open"
+            android:text="@string/app_tagline"
             android:textColor="#B3B3B3"
             android:textSize="12sp" />
 
@@ -40,15 +41,17 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_play_arrow"
-        android:tint="#1DB954" />
+        android:src="@drawable/ic_play"
+        android:tint="#1DB954"
+        android:contentDescription="@string/play" />
 
     <ImageButton
         android:id="@+id/widget_next"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_skip_next"
-        android:tint="#FFFFFF" />
+        android:src="@drawable/ic_next"
+        android:tint="#FFFFFF"
+        android:contentDescription="@string/next" />
 
 </LinearLayout>
