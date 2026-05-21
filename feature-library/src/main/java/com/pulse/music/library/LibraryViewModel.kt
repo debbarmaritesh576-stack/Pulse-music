@@ -3,7 +3,6 @@ package com.pulse.music.library
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pulse.music.database.dao.PlaylistDao
-import com.pulse.music.database.dao.SongDao
 import com.pulse.music.database.entity.PlaylistEntity
 import com.pulse.music.mediastore.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -45,43 +44,65 @@ class LibraryViewModel @Inject constructor(
 
     private fun loadAlbums() {
         viewModelScope.launch {
-            val albums = albumLoader.getAllAlbums()
-            _state.value = _state.value.copy(albums = albums)
+            try {
+                val albums = albumLoader.getAllAlbums()
+                _state.value = _state.value.copy(albums = albums)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(albums = emptyList())
+            }
         }
     }
 
     private fun loadArtists() {
         viewModelScope.launch {
-            val artists = artistLoader.getAllArtists()
-            _state.value = _state.value.copy(artists = artists)
+            try {
+                val artists = artistLoader.getAllArtists()
+                _state.value = _state.value.copy(artists = artists)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(artists = emptyList())
+            }
         }
     }
 
     private fun loadPlaylists() {
         viewModelScope.launch {
-            val playlists = playlistLoader.getAllPlaylists()
-            _state.value = _state.value.copy(playlists = playlists)
+            try {
+                val playlists = playlistLoader.getAllPlaylists()
+                _state.value = _state.value.copy(playlists = playlists)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(playlists = emptyList())
+            }
         }
     }
 
     private fun loadFolders() {
         viewModelScope.launch {
-            val folders = folderLoader.getAllFolders()
-            _state.value = _state.value.copy(folders = folders)
+            try {
+                val folders = folderLoader.getAllFolders()
+                _state.value = _state.value.copy(folders = folders)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(folders = emptyList())
+            }
         }
     }
 
     private fun loadGenres() {
         viewModelScope.launch {
-            val genres = genreLoader.getAllGenres()
-            _state.value = _state.value.copy(genres = genres, isLoading = false)
+            try {
+                val genres = genreLoader.getAllGenres()
+                _state.value = _state.value.copy(genres = genres, isLoading = false)
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(genres = emptyList(), isLoading = false)
+            }
         }
     }
 
     fun createPlaylist(name: String) {
         viewModelScope.launch {
-            playlistDao.createPlaylist(PlaylistEntity(name = name))
-            loadPlaylists()
+            try {
+                playlistDao.createPlaylist(PlaylistEntity(name = name))
+                loadPlaylists()
+            } catch (e: Exception) { }
         }
     }
 }
