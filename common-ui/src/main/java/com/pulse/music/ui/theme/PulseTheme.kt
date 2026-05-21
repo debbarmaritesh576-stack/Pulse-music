@@ -1,62 +1,53 @@
 package com.pulse.music.ui.theme
 
-import androidx.compose.material3.Typography
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
 
-private val PulseFont = FontFamily.Default
+private val DarkColors = darkColorScheme(
+    primary = PrimaryBlue,
+    secondary = PrimaryPurple,
+    tertiary = AccentPink,
 
-val Typography = Typography(
+    background = BackgroundDark,
+    surface = SurfaceDark,
+    surfaceVariant = SurfaceVariantDark,
 
-    headlineLarge = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
-        lineHeight = 38.sp
-    ),
-
-    headlineMedium = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 26.sp,
-        lineHeight = 32.sp
-    ),
-
-    titleLarge = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp
-    ),
-
-    titleMedium = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.Medium,
-        fontSize = 18.sp
-    ),
-
-    bodyLarge = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
-    ),
-
-    bodyMedium = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    ),
-
-    bodySmall = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    ),
-
-    labelLarge = TextStyle(
-        fontFamily = PulseFont,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
-    )
+    onPrimary = TextPrimary,
+    onBackground = TextPrimary,
+    onSurface = TextPrimary,
+    onSurfaceVariant = TextSecondary
 )
+
+private val LightColors = lightColorScheme(
+    primary = PrimaryBlue,
+    secondary = PrimaryPurple,
+    tertiary = AccentPink,
+
+    background = BackgroundLight,
+    surface = SurfaceLight,
+    surfaceVariant = SurfaceVariantLight,
+
+    onPrimary = TextPrimary,
+    onBackground = TextPrimaryLight,
+    onSurface = TextPrimaryLight,
+    onSurfaceVariant = TextSecondaryLight
+)
+
+@Composable
+fun PulseTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+
+    val colors = if (darkTheme) DarkColors else LightColors
+
+    MaterialTheme(
+        colorScheme = colors,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
+    )
+}
