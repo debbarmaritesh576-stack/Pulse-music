@@ -19,7 +19,8 @@ object FileUtil {
     }
 
     val SUPPORTED_AUDIO_FORMATS = setOf(
-        "mp3", "flac", "wav", "aac", "ogg", "m4a", "wma", "opus", "aiff", "alac"
+        "mp3", "flac", "wav", "aac", "ogg", "m4a", "wma", "opus", "aiff", "alac",
+        "ape", "wv", "tta", "dsf", "dff", "ac3", "ec3", "dts", "mka", "ra"
     )
 
     fun getMimeType(fileName: String): String {
@@ -32,6 +33,18 @@ object FileUtil {
             "m4a" -> "audio/mp4"
             "wma" -> "audio/x-ms-wma"
             "opus" -> "audio/opus"
+            "aiff" -> "audio/aiff"
+            "alac" -> "audio/alac"
+            "ape" -> "audio/ape"
+            "wv" -> "audio/wavpack"
+            "tta" -> "audio/tta"
+            "dsf" -> "audio/dsf"
+            "dff" -> "audio/dff"
+            "ac3" -> "audio/ac3"
+            "ec3" -> "audio/eac3"
+            "dts" -> "audio/vnd.dts"
+            "mka" -> "audio/x-matroska"
+            "ra" -> "audio/x-realaudio"
             else -> "audio/*"
         }
     }
