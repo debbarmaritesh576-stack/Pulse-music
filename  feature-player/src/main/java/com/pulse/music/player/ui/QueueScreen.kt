@@ -34,32 +34,52 @@ fun QueueScreen(
                     }
                 },
                 actions = {
-                    TextButton(onClick = { viewModel.clearQueue() }) {
-                        Text("Clear All")
+                    if (state.queue.isNotEmpty()) {
+                        TextButton(onClick = { viewModel.clearQueue() }) {
+                            Text("Clear All")
+                        }
                     }
                 }
             )
         }
     ) { padding ->
         if (state.queue.isEmpty()) {
-            Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier.fillMaxSize().padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(Icons.Default.QueueMusic, null, Modifier.size(64.dp))
                     Spacer(Modifier.height(16.dp))
                     Text("Queue is empty", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "Add songs from your library",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
         } else {
+            val safeIndex = state.currentIndex.coerceIn(0, (state.queue.size - 1).coerceAtLeast(0))
             LazyColumn(modifier = Modifier.padding(padding)) {
                 itemsIndexed(state.queue) { index, song ->
                     ListItem(
-                        headlineContent = { Text(song.title, maxLines = 1, overflow = TextOverflow.Ellipsis) },
-                        supportingContent = { Text("${song.artistName} • ${song.duration.formatDuration()}") },
+                        headlineContent = {
+                            Text(
+                                song.title,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        },
+                        supportingContent = {
+                            Text("${song.artistName} • ${song.duration.formatDuration()}")
+                        },
                         leadingContent = {
                             Text(
                                 "${index + 1}",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = if (index == state.currentIndex) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                                color = if (index == safeIndex) MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         },
                         trailingContent = {
