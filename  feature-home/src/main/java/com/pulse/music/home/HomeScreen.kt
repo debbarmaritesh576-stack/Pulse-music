@@ -5,36 +5,47 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pulse.music.ui.components.GlassCard
+import com.pulse.music.ui.components.PulseAlbumCard
+import com.pulse.music.ui.components.PulseSectionTitle
+import com.pulse.music.ui.components.PulseSongItem
+import com.pulse.music.ui.theme.DarkGradientEnd
+import com.pulse.music.ui.theme.DarkGradientStart
+import com.pulse.music.ui.theme.PlayerGradientBottom
+import com.pulse.music.ui.theme.PlayerGradientTop
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onOpenPlayer: () -> Unit,
+    onOpenSearch: () -> Unit,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
 
-    val albums = listOf(
-        "After Hours",
-        "Starboy",
-        "Future Nostalgia",
-        "Random Access Memories"
-    )
+    val state by viewModel.state.collectAsState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                Brush.verticalGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
-                        MaterialTheme.colorScheme.background
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        PlayerGradientTop,
+                        DarkGradientStart,
+                        DarkGradientEnd,
+                        PlayerGradientBottom.copy(alpha = 0.15f)
                     )
                 )
             )
@@ -42,7 +53,12 @@ fun HomeScreen() {
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(20.dp),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = 20.dp,
+                bottom = 120.dp
+            ),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
 
@@ -50,32 +66,84 @@ fun HomeScreen() {
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    Column {
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+
                         Text(
-                            "Pulse Music",
+                            text = "Pulse Music",
                             style = MaterialTheme.typography.headlineMedium
                         )
 
+                        Spacer(modifier = Modifier.height(4.dp))
+
                         Text(
-                            "Welcome back 🎵",
+                            text = "Feel every beat 🎵",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
 
-                    FilledIconButton(onClick = {}) {
-                        Icon(Icons.Default.Search, null)
+                    IconButton(
+                        onClick = onOpenSearch
+                    ) {
+
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "Search"
+                        )
+                    }
+
+                    IconButton(
+                        onClick = {}
+                    ) {
+
+                        Icon(
+                            imageVector = Icons.Default.Notifications,
+                            contentDescription = "Notifications"
+                        )
                     }
                 }
             }
 
             item {
-                Text(
-                    "Recently Played",
-                    style = MaterialTheme.typography.titleLarge
+
+                GlassCard(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+
+                    Column {
+
+                        Text(
+                            text = "Recently Played",
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        state.recentSongs.take(3).forEach { song ->
+
+                            PulseSongItem(
+                                song = song,
+                                onClick = {
+                                    viewModel.playSong(song)
+                                    onOpenPlayer()
+                                }
+                            )
+
+                            Spacer(modifier = Modifier.height(12.dp))
+                        }
+                    }
+                }
+            }
+
+            item {
+
+                PulseSectionTitle(
+                    title = "Albums",
+                    actionText = "See all"
                 )
             }
 
@@ -85,90 +153,34 @@ fun HomeScreen() {
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
 
-                    items(albums) { album ->
+                    items(state.albums) { album ->
 
-                        GlassCard(
-                            modifier = Modifier.size(170.dp)
-                        ) {
-
-                            Column(
-                                modifier = Modifier.padding(14.dp),
-                                verticalArrangement = Arrangement.SpaceBetween
-                            ) {
-
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(110.dp)
-                                        .clip(RoundedCornerShape(20.dp))
-                                        .background(
-                                            MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)
-                                        )
-                                )
-
-                                Spacer(modifier = Modifier.height(12.dp))
-
-                                Text(
-                                    album,
-                                    style = MaterialTheme.typography.titleMedium
-                                )
-                            }
-                        }
+                        PulseAlbumCard(
+                            title = album.name,
+                            subtitle = album.artist,
+                            artwork = album.artworkUri,
+                            onClick = {}
+                        )
                     }
                 }
             }
 
             item {
-                Text(
-                    "Made For You",
-                    style = MaterialTheme.typography.titleLarge
+
+                PulseSectionTitle(
+                    title = "Recommended"
                 )
             }
 
-            items(5) {
+            items(state.recommendedSongs) { song ->
 
-                GlassCard(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(14.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-
-                        Box(
-                            modifier = Modifier
-                                .size(64.dp)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(
-                                    MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f)
-                                )
-                        )
-
-                        Spacer(modifier = Modifier.width(14.dp))
-
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-
-                            Text(
-                                "Night Drive Mix",
-                                style = MaterialTheme.typography.titleMedium
-                            )
-
-                            Text(
-                                "Synthwave • Chill • EDM",
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                        }
+                PulseSongItem(
+                    song = song,
+                    onClick = {
+                        viewModel.playSong(song)
+                        onOpenPlayer()
                     }
-                }
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(120.dp))
+                )
             }
         }
     }
